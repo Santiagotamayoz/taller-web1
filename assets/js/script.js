@@ -79,7 +79,7 @@ while(repetir){
         case 7:
           let opcionSeis = Number(prompt("Digite 1 si desea continuar y 2 si desea volver al menú. "))
           if (opcionSeis == 1){
-        
+            fibonacci(termino)
         }else{
           alert("Ha vuelto al menú")  
         }
@@ -109,7 +109,7 @@ while(repetir){
         case 10:
           let opcionNueve = Number(prompt("Digite 1 si desea continuar y 2 si desea volver al menú. "))
           if (opcionNueve == 1){
-        
+            jugarPiedraPapelTijeras(eleccionUsuario)
         }else{
           alert("Ha vuelto al menú")  
         }
