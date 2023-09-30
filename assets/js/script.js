@@ -79,7 +79,9 @@ while(repetir){
         case 7:
           let opcionSeis = Number(prompt("Digite 1 si desea continuar y 2 si desea volver al menú. "))
           if (opcionSeis == 1){
-            fibonacci(termino)
+            alert("El ejercicio seleccionado hace una secuencia de fibonacci.")
+            let terminoUsuario = Number(prompt("Ingrese un número para empezar la secuencia de Fibonacci:"))
+            console.log(fibonacci(terminoUsuario));
         }else{
           alert("Ha vuelto al menú")  
         }
@@ -109,7 +111,13 @@ while(repetir){
         case 10:
           let opcionNueve = Number(prompt("Digite 1 si desea continuar y 2 si desea volver al menú. "))
           if (opcionNueve == 1){
-            jugarPiedraPapelTijeras(eleccionUsuario)
+            alert("Usted ha ingresado a un minijuego, se trata de unjuego en el que usted juega contra la computadora eligiendo entre piedra, papel o tijeras, el programa determina al ganador. \nBUENA SUERTE ")
+            let eleccionUsuario = prompt("Elige piedra, papel o tijeras").toLowerCase();
+            if (eleccionUsuario === "piedra" || eleccionUsuario === "papel" || eleccionUsuario === "tijeras") {
+              jugarPiedraPapelTijeras(eleccionUsuario);
+            } else {
+              alert("Elige una opción válida. Por favor, elige: piedra, papel o tijeras.");
+            }
         }else{
           alert("Ha vuelto al menú")  
         }
@@ -239,22 +247,31 @@ function sumaPrimosHastaN() {
 //--------------------------------------------------------------------------------------------------------//
 //Numero 7
 function fibonacci(termino) {
-  alert (" El ejercicio seleccionado hace una secuencia de fibonacci osea suma el numero actual con el anterior. ")
+  let secuencia = [];
 
-  if (termino == 0) return []
-  if (termino == 1) return [0]
+  if (termino === 0) {
+    return secuencia;
+  } else if (termino === 1) {
+    secuencia.push(0);
+    return secuencia;
+  } else if (termino === 2) {
+    secuencia.push(0, 1);
+    return secuencia;
+  } else {
+    secuencia.push(0, 1);
 
-  let secuencia = [0, 1]
+    for (let i = 2; i < termino; i++) {
+      secuencia[i] = secuencia[i - 1] + secuencia[i - 2];
+    }
 
-  for (let i = 2; i < termino; i++) {
-    secuencia[i] = secuencia[i - 1] + secuencia[i - 2]
+    return secuencia;
+    
+    
   }
-
-  return secuencia
+  
 }
 
-let terminoUsuario = Number(prompt("Ingrese un numero para generar la secuencia de Fibonacci:"))
-console.log(fibonacci(terminoUsuario))
+
 
 //--------------------------------------------------------------------------------------------------------//
 //Numero 8
@@ -294,38 +311,32 @@ function potencia (){
 
 //--------------------------------------------------------------------------------------------------------//
 //Numero 10
-
 function jugarPiedraPapelTijeras(eleccionUsuario) {
-  alert("Usted ha ingresado a un minijuego, se trata de unjuego en el que usted juega contra la computadora eligiendo entre piedra, papel o tijeras, el programa determina al ganador. \nBUENA SUERTE ")
   let elecciones = ["piedra", "papel", "tijeras"];
   let eleccionComputadora = Math.floor(Math.random() * 3);
 
-  let resultado = determinarGanador(eleccionUsuario, elecciones[eleccionComputadora]);
+  let resultados = ["¡Es un empate!", "¡Ganaste!", "¡La computadora ganó!"];
+  let resultado = resultados[determinarGanador(eleccionUsuario, elecciones[eleccionComputadora])];
 
-  mostrarResultado(eleccionUsuario, elecciones[eleccionComputadora], resultado);
+  alert("Elegiste: " + eleccionUsuario + "\nLa computadora eligió: " + elecciones[eleccionComputadora] + "\n" + resultado);
 }
 
 function determinarGanador(eleccionUsuario, eleccionComputadora) {
   if (eleccionUsuario === eleccionComputadora) {
-    return "¡Es un empate!"
+    return 0; // Empate
   } else if (
-    (eleccionUsuario === "piedra" && eleccionComputadora === "tijeras") || (eleccionUsuario === "papel" && eleccionComputadora === "piedra") || (eleccionUsuario === "tijeras" && eleccionComputadora === "papel")) {
-    return "¡Ganaste!"
+    (eleccionUsuario === "piedra" && eleccionComputadora === "tijeras") ||
+    (eleccionUsuario === "papel" && eleccionComputadora === "piedra") ||
+    (eleccionUsuario === "tijeras" && eleccionComputadora === "papel")
+  ) {
+    return 1; // Gana el usuario
   } else {
-    return "¡La computadora ganó!"
+    return 2; // Gana la computadora
   }
 }
 
-function mostrarResultado(eleccionUsuario, eleccionComputadora, resultado) {
-  alert("Elegiste: " +eleccionUsuario+ "\n"+ "La computadora eligió: "+ eleccionComputador+"\n"+ Resultado+ " resultado");
-}
 
-let eleccionUsuario = prompt("Elige piedra, papel o tijeras").toLowerCase();
-if (eleccionUsuario === "piedra" || eleccionUsuario === "papel" || eleccionUsuario === "tijeras"){
-  jugarPiedraPapelTijeras(eleccionUsuario)
-} else{
-  alert("Eleccion inválida. Por favor, elige piedra, papel o tijeras.")
-}
+
 //--------------------------------------------------------------------------------------------------------//
 //Numero 11          !FUNCION CON RETORNO!
 
